@@ -7,13 +7,16 @@ class SettingsService {
   static const _kSeeded = 'gemini_default_seeded_v1';
 
   // ---------------------------------------------------------------------------
-  // DEV CONVENIENCE — first-launch default API key.
+  // First-launch default API key — injected at BUILD TIME, never committed.
   //
-  // This is only baked in so the app works out of the box during development.
-  // For a published / committed build, set this to '' and let the user paste
-  // their own key into Settings. Rotate any key that has lived in source.
+  // Provide it via --dart-define so the key stays out of source control:
+  //   flutter run   --dart-define=GEMINI_API_KEY=your_key_here
+  //   flutter build --dart-define=GEMINI_API_KEY=your_key_here
+  // If no value is supplied this is '' and the user pastes their own key in
+  // Settings. NEVER hardcode a real key here — anything in source ends up on
+  // GitHub. Rotate any key that has ever lived in source.
   // ---------------------------------------------------------------------------
-  static const _devSeedKey = 'AIzaSyDp9NsdiXu19uBrUS6qUy6UuPadkuCcBFE';
+  static const _devSeedKey = String.fromEnvironment('GEMINI_API_KEY');
 
   static const availableModels = <String>[
     'gemini-2.5-flash-lite', // cheapest / fastest
