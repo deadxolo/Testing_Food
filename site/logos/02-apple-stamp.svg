@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="FoodFat apple stamp logo">
+  <!-- Letterpress-style apple with monogram -->
+  <!-- Apple body -->
+  <path d="M100 60 C 60 60, 40 90, 40 125 C 40 165, 65 180, 100 175 C 135 180, 160 165, 160 125 C 160 90, 140 60, 100 60 Z"
+        fill="#1B8A3A"/>
+  <!-- Apple notch -->
+  <path d="M88 62 C 96 50, 104 50, 112 62" stroke="#1B8A3A" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- Leaf -->
+  <path d="M105 55 C 120 35, 140 30, 145 45 C 130 55, 115 60, 105 55 Z" fill="#7CB342"/>
+  <!-- Stem -->
+  <path d="M100 60 L 102 48" stroke="#5C3A1E" stroke-width="3" stroke-linecap="round"/>
+  <!-- FF monogram on apple -->
+  <g fill="#F4F1E8" font-family="Georgia, serif" font-weight="900" font-style="italic">
+    <text x="100" y="148" text-anchor="middle" font-size="64" letter-spacing="-4">ff</text>
+  </g>
+  <!-- Outer letterpress ring -->
+  <circle cx="100" cy="120" r="80" fill="none" stroke="#1A1F1A" stroke-width="2" stroke-dasharray="2 4"/>
+</svg>

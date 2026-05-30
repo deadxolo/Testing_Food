@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="FoodFat verdict seal logo">
+  <!-- Notarial seal -->
+  <defs>
+    <path id="ringText" d="M 100 100 m -75 0 a 75 75 0 1 1 150 0 a 75 75 0 1 1 -150 0"/>
+  </defs>
+  <!-- Outer ring -->
+  <circle cx="100" cy="100" r="92" fill="none" stroke="#1A1F1A" stroke-width="2"/>
+  <circle cx="100" cy="100" r="86" fill="none" stroke="#1A1F1A" stroke-width="1"/>
+  <!-- Inner field -->
+  <circle cx="100" cy="100" r="78" fill="#1B8A3A"/>
+  <!-- Curving text -->
+  <text font-family="Georgia, serif" font-size="13" font-weight="700" letter-spacing="6" fill="#F4F1E8">
+    <textPath href="#ringText" startOffset="2%">FOODFAT · LABEL REVIEW · </textPath>
+  </text>
+  <!-- Stars row -->
+  <g fill="#F6A609" font-family="Georgia, serif" font-size="20">
+    <text x="100" y="120" text-anchor="middle" letter-spacing="3">★ ★ ★ ★ ★</text>
+  </g>
+  <!-- Center mark -->
+  <text x="100" y="100" text-anchor="middle" font-family="Georgia, serif" font-weight="900" font-style="italic" font-size="36" fill="#F4F1E8">FF</text>
+  <!-- Year -->
+  <text x="100" y="140" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#F4F1E8">EST. 2026</text>
+</svg>

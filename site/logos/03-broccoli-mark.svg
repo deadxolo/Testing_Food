@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="FoodFat broccoli mark logo">
+  <!-- Geometric broccoli -->
+  <g>
+    <!-- Florets -->
+    <circle cx="70"  cy="80"  r="22" fill="#1B8A3A"/>
+    <circle cx="100" cy="65"  r="26" fill="#7CB342"/>
+    <circle cx="130" cy="80"  r="22" fill="#1B8A3A"/>
+    <circle cx="85"  cy="95"  r="20" fill="#7CB342"/>
+    <circle cx="115" cy="95"  r="20" fill="#7CB342"/>
+    <circle cx="100" cy="105" r="22" fill="#1B8A3A"/>
+    <!-- Stem -->
+    <rect x="88" y="115" width="24" height="40" fill="#EDE6D2" rx="2"/>
+    <line x1="100" y1="125" x2="100" y2="148" stroke="#1A1F1A" stroke-width="1.5" opacity="0.3"/>
+    <line x1="94"  y1="128" x2="94"  y2="145" stroke="#1A1F1A" stroke-width="1.5" opacity="0.3"/>
+    <line x1="106" y1="128" x2="106" y2="145" stroke="#1A1F1A" stroke-width="1.5" opacity="0.3"/>
+  </g>
+</svg>

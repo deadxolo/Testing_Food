@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="FoodFat monogram F logo">
+  <!-- Rounded square -->
+  <rect x="10" y="10" width="180" height="180" rx="40" fill="#1B8A3A"/>
+  <!-- Big serif F -->
+  <text x="55" y="158" font-family="Georgia, serif" font-weight="900" font-size="180" fill="#F4F1E8">F</text>
+  <!-- Leaf curving into the F's crossbar -->
+  <path d="M125 100 C 165 90, 175 75, 165 50 C 135 60, 120 80, 125 100 Z"
+        fill="#F6A609"/>
+  <!-- Vein -->
+  <path d="M125 100 L 165 50" stroke="#1B8A3A" stroke-width="2" stroke-linecap="round"/>
+</svg>

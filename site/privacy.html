@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Privacy Policy · FoodFat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E🥦%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ───────────────────────── TOP NAV ───────────────────────── -->
+<nav class="topnav">
+  <a class="topnav__brand" href="/">
+    <span class="topnav__mark">🥦</span>
+    <span>The FoodFat Review</span>
+  </a>
+  <div class="topnav__links">
+    <a href="/">Magazine</a>
+    <a href="/stories/">Stories &amp; Recipes</a>
+    <a href="/privacy.html" aria-current="page">Privacy</a>
+    <a href="/admin/">Admin</a>
+  </div>
+</nav>
+
+<header class="masthead">
+  <div class="masthead__bar">
+    <span><a href="/">← The FoodFat Review</a></span>
+    <span class="masthead__date">Last updated &middot; May 18, 2026</span>
+    <span><a href="/stories/">Stories &amp; Recipes →</a></span>
+  </div>
+  <h1 class="masthead__title">Privacy<span>Policy</span></h1>
+  <p class="masthead__deck">What we collect, what we don't, and where the data lives. Plain English &mdash; like the rest of the magazine.</p>
+</header>
+
+<article class="legal">
+
+<section class="legal__section">
+  <p class="kicker">Section 01 &middot; The short version</p>
+  <h3>If you remember nothing else</h3>
+  <p>FoodFat is built to be useful without watching you. The on-device scoring engine runs offline. Scan history lives on your phone, in a local SQLite file, not on a server. The only data that leaves the device is what you explicitly need to leave: a barcode lookup to Open Food Facts, an authentication token to Firebase, and &mdash; if you opt in to AI label reading &mdash; the photo of a pack to Anthropic.</p>
+  <ul class="legal__highlights">
+    <li><strong>No analytics, no ad networks, no SDK that tracks you across apps.</strong></li>
+    <li><strong>No selling, sharing, or renting of your data to anyone.</strong></li>
+    <li><strong>Your Anthropic API key is stored on your device only.</strong></li>
+    <li><strong>You can use the app without an account.</strong> Anonymous sign-in is the default.</li>
+  </ul>
+</section>
+
+<section class="legal__section">
+  <p class="kicker">Section 02 &middot; Who we are</p>
+  <h3>The publisher</h3>
+  <p>FoodFat is published by Arju Singh ("we", "us"). The app is distributed under the bundle identifier <code>com.arju.foodfat</code> on iOS and <code>com.foodfat.foodfat</code> on Android. Questions or requests: <a href="mailto:connect@arjusingh.com">connect@arjusingh.com</a>.</p>
+</section>
+
+<section class="legal__section">
+  <p class="kicker">Section 03 &middot; The data we handle</p>
+  <h3>What's collected, why, and where it goes</h3>
+
+  <div class="legal__table">
+    <div class="legal__row legal__row--head">
+      <div>Data</div><div>Purpose</div><div>Lifetime</div><div>Where it lives</div>
+    </div>
+    <div class="legal__row">
+      <div><strong>Firebase Auth UID</strong><span>Anonymous by default, or email if you sign up.</span></div>
+      <div>Sign-in, syncing your admin status, attaching scans to your account.</div>
+      <div>Until you sign out or delete the account.</div>
+      <div>Google Firebase (US, EU regions).</div>
+    </div>
+    <div class="legal__row">
+      <div><strong>Email + password</strong><span>Only if you choose to upgrade from anonymous.</span></div>
+      <div>Recovering your scan history on a new device. Admin sign-in to the web console.</div>
+      <div>Until you delete the account.</div>
+      <div>Firebase Authentication.</div>
+    </div>
+    <div class="legal__row">
+      <div><strong>User profile doc</strong><span>UID, email if any, scan count, last login.</span></div>
+      <div>Showing the admin desk a list of recent users.</div>
+      <div>Until account deletion.</div>
+      <div>Firestore <code>users/</code> collection.</div>
+    </div>
+    <div class="legal__row">
+      <div><strong>Scan records</strong><span>Barcode, product name, score, verdict, timestamp.</span></div>
+      <div>Your personal scan history. Visible only to you and admins (for stats).</div>
+      <div>Until you delete it or your account.</div>
+      <div>Local SQLite + Firestore <code>scans/</code>.</div>
+    </div>
+    <div class="legal__row">
+      <div><strong>Camera frames (barcode)</strong><span>Live preview only.</span></div>
+      <div>Decoding the barcode locally. Frames are never stored or uploaded.</div>
+      <div>Processed in memory, discarded immediately.</div>
+      <div>On-device only.</div>
+    </div>
+    <div class="legal__row">
+      <div><strong>Photos of the pack</strong><span>Only if you tap "Photograph the label."</span></div>
+      <div>Sent to Anthropic's vision API to extract ingredients + nutrition table.</div>
+      <div>Held by Anthropic per their retention policy; not stored by us.</div>
+      <div>Your device &rarr; Anthropic API.</div>
+    </div>
+    <div class="legal__row">
+      <div><strong>Anthropic API key</strong><span>You paste it in Settings.</span></div>
+      <div>Authenticating the vision call. Required only if you use AI label reading.</div>
+      <div>Until you clear it from Settings.</div>
+      <div>Encrypted local storage on your device only.</div>
+    </div>
+    <div class="legal__row">
+      <div><strong>Barcode lookups</strong><span>The 13-digit number on the pack.</span></div>
+      <div>Fetching product data from Open Food Facts.</div>
+      <div>Per Open Food Facts' own logs (anonymous, no UID).</div>
+      <div>world.openfoodfacts.org.</div>
+    </div>
+  </div>
+</section>
+
+<section class="legal__section">
+  <p class="kicker">Section 04 &middot; What we deliberately don't do</p>
+  <h3>The list of things we avoid</h3>
+  <ul class="legal__list">
+    <li><strong>No analytics.</strong> Firebase Analytics is disabled in the iOS configuration (<code>IS_ANALYTICS_ENABLED = false</code>) and is not initialised in the Android build.</li>
+    <li><strong>No advertising SDKs.</strong> The "ads" we serve are first-party promo cards from our own Firestore, authored by us, never personalised.</li>
+    <li><strong>No third-party tracking.</strong> No Facebook Pixel, no Google Tag Manager, no Segment, no Mixpanel, no anything.</li>
+    <li><strong>No cross-app identifiers.</strong> We do not read your Advertising ID (IDFA / GAID).</li>
+    <li><strong>No location.</strong> We never request location permission. We don't need it.</li>
+    <li><strong>No microphone.</strong> Camera is requested for scanning; mic is not.</li>
+    <li><strong>No contacts, calendar, health-kit, photos library &mdash; unless you tap "Pick from gallery" in the label-reader, in which case you pick one image, we read it, that's it.</strong></li>
+  </ul>
+</section>
+
+<section class="legal__section">
+  <p class="kicker">Section 05 &middot; Third-party services</p>
+  <h3>Who else sees a slice of the data</h3>
+
+  <div class="legal__card">
+    <h4>Google Firebase &middot; Auth + Firestore</h4>
+    <p>Stores your UID, optional email, user profile and scan records. Subject to Google's privacy policy and Data Processing Addendum. Region: US multi-region by default.</p>
+    <p class="legal__link"><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy &nearr;</a></p>
+  </div>
+
+  <div class="legal__card">
+    <h4>Anthropic &middot; Claude vision API</h4>
+    <p>Only invoked when you tap "Photograph the label" <em>and</em> have pasted your own Anthropic API key. The photo + a fixed prompt go to Anthropic; the response (ingredients + nutrition JSON) comes back. Anthropic's enterprise terms apply to <em>your</em> account; please review them.</p>
+    <p class="legal__link"><a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">anthropic.com/legal/privacy &nearr;</a></p>
+  </div>
+
+  <div class="legal__card">
+    <h4>Open Food Facts &middot; product database</h4>
+    <p>Public, community-curated database. We send the barcode you scanned and receive the product entry. Open Food Facts logs the lookup anonymously; no UID is sent.</p>
+    <p class="legal__link"><a href="https://world.openfoodfacts.org/privacy" target="_blank" rel="noopener">world.openfoodfacts.org/privacy &nearr;</a></p>
+  </div>
+
+  <div class="legal__card">
+    <h4>Google Fonts &middot; magazine website only</h4>
+    <p>The marketing site (this one) loads fonts from <code>fonts.gstatic.com</code>. The app itself ships fonts locally and does not call Google Fonts.</p>
+    <p class="legal__link"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy &nearr;</a></p>
+  </div>
+</section>
+
+<section class="legal__section">
+  <p class="kicker">Section 06 &middot; Your rights and controls</p>
+  <h3>How to see, fix or delete your data</h3>
+  <ul class="legal__list">
+    <li><strong>See it.</strong> Open the History tab to view every scan we've kept. Open Settings to view the Anthropic key state and your account email (if any).</li>
+    <li><strong>Delete a scan.</strong> Swipe a row in History &rarr; delete. Removes the local copy and the Firestore copy.</li>
+    <li><strong>Clear the API key.</strong> Settings &rarr; "Forget my Anthropic key."</li>
+    <li><strong>Sign out / delete account.</strong> Settings &rarr; Sign out. To delete the account itself, email <a href="mailto:connect@arjusingh.com">connect@arjusingh.com</a> from the email on file; we remove your user doc and every scan attached to your UID within 7 days.</li>
+    <li><strong>GDPR / CCPA.</strong> Residents of the EU, UK and California have the right to access, correct, port and delete their data. We honour these requests free of charge; email us.</li>
+    <li><strong>Children.</strong> The app is not directed at children under 13 (under 16 in the EU). If you believe we've collected data from a child, email us and we'll delete it.</li>
+  </ul>
+</section>
+
+<section class="legal__section">
+  <p class="kicker">Section 07 &middot; Permissions, on each platform</p>
+  <h3>What the OS dialogs really mean</h3>
+  <div class="legal__card">
+    <h4>Camera</h4>
+    <p>Used to scan a barcode or photograph a label. Frames stay on device. Granting camera permission does not grant anything else.</p>
+  </div>
+  <div class="legal__card">
+    <h4>Photo library (optional)</h4>
+    <p>Requested only when you choose "Pick from gallery" instead of the camera. We read the one image you select; we never browse your library.</p>
+  </div>
+  <div class="legal__card">
+    <h4>Internet</h4>
+    <p>Standard. Used to call Open Food Facts, Firebase, and (if you opt in) Anthropic.</p>
+  </div>
+</section>
+
+<section class="legal__section">
+  <p class="kicker">Section 08 &middot; Security</p>
+  <h3>What protects the data</h3>
+  <p>Firestore access is gated by the rules in <code>firestore.rules</code>: each user can only read/write their own documents; only members of the <code>admins/</code> collection can read everyone's scans or edit promo cards. The Anthropic API key is stored using the OS's secure preference storage (Keychain on iOS, EncryptedSharedPreferences on Android). All network calls are over HTTPS / TLS 1.2+.</p>
+  <p>No system is perfectly secure. If you believe you've found a vulnerability, email <a href="mailto:connect@arjusingh.com">connect@arjusingh.com</a>.</p>
+</section>
+
+<section class="legal__section">
+  <p class="kicker">Section 09 &middot; International transfers</p>
+  <h3>Where the data physically sits</h3>
+  <p>Firebase data is stored in Google's US multi-region by default. If you are accessing the app from the EU / UK, your data is transferred to the US under the EU-US Data Privacy Framework and Google's Standard Contractual Clauses. Anthropic processes vision requests on their own infrastructure under their terms.</p>
+</section>
+
+<section class="legal__section">
+  <p class="kicker">Section 10 &middot; Changes to this policy</p>
+  <h3>What happens when this page changes</h3>
+  <p>If we change how the app handles data in any material way, we'll bump the "Last updated" date at the top and surface an in-app notice on next launch. We won't silently broaden what we collect.</p>
+</section>
+
+<section class="legal__section legal__section--contact">
+  <p class="kicker">Section 11 &middot; Contact</p>
+  <h3>Reach a human</h3>
+  <p>Privacy questions, data requests, security issues, GDPR / CCPA invocations &mdash; the same inbox:<br/>
+    <a href="mailto:connect@arjusingh.com" class="legal__email">connect@arjusingh.com</a></p>
+  <p class="muted">We try to reply within 7 days. Please mention "FoodFat · Privacy" in the subject.</p>
+</section>
+
+</article>
+
+<footer class="colophon">
+  <div>
+    <p class="kicker">Colophon</p>
+    <p><a href="/">← Back to The FoodFat Review</a> &middot; <a href="/admin/">Admin console</a></p>
+  </div>
+  <div class="colophon__mast">
+    <p class="kicker">Document</p>
+    <p>Issue No. 01 &middot; Privacy Policy<br/>Effective from May 18, 2026<br/>Published by Arju Singh</p>
+  </div>
+</footer>
+
+<div class="signoff-bar">
+  <p class="kicker">A Magazine by</p>
+  <p class="signoff-bar__name">Arju</p>
+  <p class="signoff-bar__role">Editor &middot; Designer &middot; Engineer</p>
+  <p class="signoff-bar__year">© 2026 &middot; connect@arjusingh.com</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Logo Picker &middot; FoodFat Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#1A1F1A; --ink-soft:#5A625A;
+    --paper:#F4F1E8; --paper-warm:#EDE6D2;
+    --seed:#1B8A3A; --watch:#F6A609; --bad:#D32F2F;
+    --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--ink)}
+  .wrap{max-width:1280px;margin:0 auto;padding:48px clamp(20px,4vw,64px)}
+
+  /* Page masthead */
+  .head{border-bottom:4px double var(--ink);padding-bottom:24px;margin-bottom:48px}
+  .kicker{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 8px}
+  .head h1{font-family:var(--serif);font-weight:900;font-style:italic;font-size:clamp(40px,6vw,72px);margin:0 0 8px;letter-spacing:-0.02em}
+  .head p{font-family:var(--serif);font-style:italic;color:var(--ink-soft);font-size:18px;margin:0;max-width:720px}
+  .head__nav{margin-top:20px;display:flex;gap:18px;flex-wrap:wrap;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase}
+  .head__nav a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+  .head__nav a:hover{color:var(--seed)}
+
+  /* Concept block */
+  .concept{
+    border:1px solid var(--ink);
+    border-radius:6px;
+    background:var(--paper-warm);
+    padding:32px;
+    margin-bottom:32px;
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:24px;
+  }
+  .concept__head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    padding-bottom:16px;
+    border-bottom:1px solid rgba(0,0,0,0.15);
+    flex-wrap:wrap;
+  }
+  .concept__num{
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:600;
+    padding:3px 8px;
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:2px;
+  }
+  .concept__name{font-family:var(--serif);font-weight:900;font-size:28px;margin:0;letter-spacing:-0.01em}
+  .concept__tag{color:var(--ink-soft);font-style:italic;font-family:var(--serif)}
+
+  .demos{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+  }
+  @media (max-width:900px){.demos{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:520px){.demos{grid-template-columns:1fr}}
+
+  .demo{
+    background:var(--paper);
+    border:1px solid rgba(0,0,0,0.15);
+    border-radius:4px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:200px;
+    text-align:center;
+  }
+  .demo__cap{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-top:14px}
+
+  /* App icon — squircle */
+  .demo--app{background:linear-gradient(135deg,#2a2f2a,#0a0f0a);padding:32px}
+  .app-icon{
+    width:120px;height:120px;
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 12px 32px rgba(0,0,0,0.35),0 2px 4px rgba(0,0,0,0.2);
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .app-icon img{width:100%;height:100%;display:block}
+  .demo--app .demo__cap{color:rgba(244,241,232,0.7)}
+
+  /* Website header demo */
+  .demo--web{padding:0;align-items:stretch;justify-content:flex-start}
+  .web-mock{
+    width:100%;
+    background:var(--paper);
+    padding:18px 20px;
+    border-bottom:2px solid var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex:1;
+  }
+  .web-mock__logo{display:flex;align-items:center;gap:10px}
+  .web-mock__logo img{height:36px;width:auto}
+  .web-mock__nav{display:none}
+  @media (min-width:600px){.web-mock__nav{display:flex;gap:14px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}}
+  .web-mock__body{padding:14px 20px;background:var(--paper-warm);font-family:var(--serif);font-style:italic;color:var(--ink-soft);font-size:13px;text-align:left}
+  .demo--web .demo__cap{padding:8px 20px 16px}
+
+  /* Favicon strip */
+  .demo--fav{align-items:flex-start}
+  .fav-strip{
+    width:100%;
+    background:#e8ecf0;
+    border-radius:6px 6px 0 0;
+    padding:6px;
+    display:flex;
+    gap:4px;
+    align-items:center;
+  }
+  .fav-tab{
+    background:#fff;
+    border-radius:6px 6px 0 0;
+    padding:6px 10px 8px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+    color:var(--ink);
+    box-shadow:0 -1px 2px rgba(0,0,0,0.06);
+    max-width:180px;
+    overflow:hidden;
+  }
+  .fav-tab img{width:14px;height:14px;flex:none}
+  .fav-tab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fav-url{
+    width:100%;
+    background:#f5f7fa;
+    padding:6px 10px;
+    border-radius:4px;
+    margin-top:6px;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ink-soft);
+    text-align:left;
+  }
+
+  /* Raw card */
+  .demo--raw{background:#fff}
+  .demo--raw img{max-width:140px;max-height:140px;width:100%;height:auto}
+
+  /* Notes */
+  .concept__notes{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:8px;
+    font-size:14px;
+    color:var(--ink-soft);
+    font-family:var(--serif);
+  }
+  @media (max-width:700px){.concept__notes{grid-template-columns:1fr}}
+  .concept__notes h4{
+    font-family:var(--sans);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink);
+    margin:0 0 6px;
+  }
+  .concept__notes p{margin:0}
+
+  /* CTA */
+  .picker-cta{
+    padding:32px;
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:6px;
+    text-align:center;
+    margin:48px 0 0;
+  }
+  .picker-cta h2{font-family:var(--serif);font-style:italic;font-size:32px;margin:0 0 8px}
+  .picker-cta p{font-family:var(--serif);color:rgba(244,241,232,0.75);margin:0 0 16px;font-size:16px}
+  .picker-cta code{font-family:var(--mono);background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:3px;font-size:13px;color:var(--paper)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <p class="kicker">Logo Picker &middot; The FoodFat Review</p>
+    <h1>Eight directions, one decision</h1>
+    <p>Each concept is shown four ways &mdash; as an app icon on a dark home screen, as a website header, as a browser-tab favicon, and on a clean white card. Pick the one that holds up in every context.</p>
+    <nav class="head__nav">
+      <a href="#c1">01 Scanner Leaf</a>
+      <a href="#c2">02 Apple Stamp</a>
+      <a href="#c3">03 Broccoli Mark</a>
+      <a href="#c4">04 Wordmark</a>
+      <a href="#c5">05 Score Gauge</a>
+      <a href="#c6">06 Barcode Sprout</a>
+      <a href="#c7">07 Verdict Seal</a>
+      <a href="#c8">08 Monogram F</a>
+      <a href="/">&larr; Back to magazine</a>
+    </nav>
+  </header>
+
+  <!-- Concept 1 -->
+  <section id="c1" class="concept">
+    <div class="concept__head">
+      <span class="concept__num">01</span>
+      <h3 class="concept__name">Scanner Leaf</h3>
+      <span class="concept__tag">&mdash; a leaf that is also a barcode</span>
+    </div>
+    <div class="demos">
+      <div class="demo demo--app">
+        <div class="app-icon"><img src="/logos/01-scanner-leaf.svg" alt=""></div>
+        <p class="demo__cap">App icon</p>
+      </div>
+      <div class="demo demo--web">
+        <div class="web-mock">
+          <div class="web-mock__logo"><img src="/logos/01-scanner-leaf.svg" alt=""><strong style="font-family:var(--serif);font-weight:900">FoodFat</strong></div>
+          <div class="web-mock__nav"><span>Method</span><span>Store</span><span>About</span></div>
+        </div>
+        <div class="web-mock__body">"Plain-English verdicts on the packed food you eat &hellip;"</div>
+        <p class="demo__cap">Website header</p>
+      </div>
+      <div class="demo demo--fav">
+        <div class="fav-strip">
+          <div class="fav-tab"><img src="/logos/01-scanner-leaf.svg" alt=""><span>FoodFat Review</span></div>
+        </div>
+        <div class="fav-url">https://foodfat.app</div>
+        <p class="demo__cap" style="margin-top:auto">Favicon / tab</p>
+      </div>
+      <div class="demo demo--raw"><img src="/logos/01-scanner-leaf.svg" alt=""><p class="demo__cap">Raw mark</p></div>
+    </div>
+    <div class="concept__notes">
+      <div><h4>The idea</h4><p>A leaf silhouette concealing scan-bars, with a single amber beam &mdash; the act of reading, in one shape. Echoes both the produce aisle and the camera.</p></div>
+      <div><h4>Best for</h4><p>App icon and favicon &mdash; reads cleanly at 16px. Pairs with the magazine wordmark in the header rather than replacing it.</p></div>
+    </div>
+  </section>
+
+  <!-- Concept 2 -->
+  <section id="c2" class="concept">
+    <div class="concept__head">
+      <span class="concept__num">02</span>
+      <h3 class="concept__name">Apple Stamp</h3>
+      <span class="concept__tag">&mdash; letterpress monogram with the FF inside an apple</span>
+    </div>
+    <div class="demos">
+      <div class="demo demo--app">
+        <div class="app-icon"><img src="/logos/02-apple-stamp.svg" alt=""></div>
+        <p class="demo__cap">App icon</p>
+      </div>
+      <div class="demo demo--web">
+        <div class="web-mock">
+          <div class="web-mock__logo"><img src="/logos/02-apple-stamp.svg" alt=""><strong style="font-family:var(--serif);font-weight:900">FoodFat</strong></div>
+          <div class="web-mock__nav"><span>Method</span><span>Store</span><span>About</span></div>
+        </div>
+        <div class="web-mock__body">"Plain-English verdicts on the packed food you eat &hellip;"</div>
+        <p class="demo__cap">Website header</p>
+      </div>
+      <div class="demo demo--fav">
+        <div class="fav-strip">
+          <div class="fav-tab"><img src="/logos/02-apple-stamp.svg" alt=""><span>FoodFat Review</span></div>
+        </div>
+        <div class="fav-url">https://foodfat.app</div>
+        <p class="demo__cap" style="margin-top:auto">Favicon / tab</p>
+      </div>
+      <div class="demo demo--raw"><img src="/logos/02-apple-stamp.svg" alt=""><p class="demo__cap">Raw mark</p></div>
+    </div>
+    <div class="concept__notes">
+      <div><h4>The idea</h4><p>Old-school produce-crate stamp. Apple silhouette holds an italic "ff" monogram; a dotted outer ring sells the magazine-as-press feel.</p></div>
+      <div><h4>Best for</h4><p>Editorial-leaning brand. Strongest when the magazine identity matters more than the tech-product feel.</p></div>
+    </div>
+  </section>
+
+  <!-- Concept 3 -->
+  <section id="c3" class="concept">
+    <div class="concept__head">
+      <span class="concept__num">03</span>
+      <h3 class="concept__name">Broccoli Mark</h3>
+      <span class="concept__tag">&mdash; geometric vegetable, no text</span>
+    </div>
+    <div class="demos">
+      <div class="demo demo--app">
+        <div class="app-icon" style="background:#F4F1E8"><img src="/logos/03-broccoli-mark.svg" alt=""></div>
+        <p class="demo__cap">App icon</p>
+      </div>
+      <div class="demo demo--web">
+        <div class="web-mock">
+          <div class="web-mock__logo"><img src="/logos/03-broccoli-mark.svg" alt=""><strong style="font-family:var(--serif);font-weight:900">FoodFat</strong></div>
+          <div class="web-mock__nav"><span>Method</span><span>Store</span><span>About</span></div>
+        </div>
+        <div class="web-mock__body">"Plain-English verdicts on the packed food you eat &hellip;"</div>
+        <p class="demo__cap">Website header</p>
+      </div>
+      <div class="demo demo--fav">
+        <div class="fav-strip">
+          <div class="fav-tab"><img src="/logos/03-broccoli-mark.svg" alt=""><span>FoodFat Review</span></div>
+        </div>
+        <div class="fav-url">https://foodfat.app</div>
+        <p class="demo__cap" style="margin-top:auto">Favicon / tab</p>
+      </div>
+      <div class="demo demo--raw"><img src="/logos/03-broccoli-mark.svg" alt=""><p class="demo__cap">Raw mark</p></div>
+    </div>
+    <div class="concept__notes">
+      <div><h4>The idea</h4><p>The 🥦 you already see in the favicon, but drawn with geometry &mdash; two greens, dotted stem, no type. The friendliest of the eight.</p></div>
+      <div><h4>Best for</h4><p>Approachable, consumer-app feel. Reads as "fresh produce" without needing a single word.</p></div>
+    </div>
+  </section>
+
+  <!-- Concept 4 -->
+  <section id="c4" class="concept">
+    <div class="concept__head">
+      <span class="concept__num">04</span>
+      <h3 class="concept__name">Wordmark</h3>
+      <span class="concept__tag">&mdash; pure typography, the magazine masthead</span>
+    </div>
+    <div class="demos">
+      <div class="demo demo--app">
+        <div class="app-icon" style="border-radius:28px;background:var(--paper)"><img src="/logos/04-wordmark.svg" alt="" style="padding:8px"></div>
+        <p class="demo__cap">App icon (poor fit)</p>
+      </div>
+      <div class="demo demo--web">
+        <div class="web-mock" style="flex-direction:column;align-items:center;gap:0">
+          <img src="/logos/04-wordmark.svg" alt="" style="height:auto;max-height:80px;width:100%;max-width:380px">
+        </div>
+        <div class="web-mock__body">"Plain-English verdicts on the packed food you eat &hellip;"</div>
+        <p class="demo__cap">Website header (best fit)</p>
+      </div>
+      <div class="demo demo--fav">
+        <div class="fav-strip">
+          <div class="fav-tab"><img src="/logos/04-wordmark.svg" alt=""><span>FoodFat Review</span></div>
+        </div>
+        <div class="fav-url">https://foodfat.app</div>
+        <p class="demo__cap" style="margin-top:auto">Favicon (illegible at 16px)</p>
+      </div>
+      <div class="demo demo--raw"><img src="/logos/04-wordmark.svg" alt=""><p class="demo__cap">Raw mark</p></div>
+    </div>
+    <div class="concept__notes">
+      <div><h4>The idea</h4><p>Two horizontal rules, italic Fraunces wordmark, "R E V I E W" spaced underneath in seed-green. Doubles as the masthead of the site.</p></div>
+      <div><h4>Best for</h4><p>Website header. <strong>Pair with one of the symbol marks (01, 03, 05, 06, 07, 08) for the app icon and favicon.</strong></p></div>
+    </div>
+  </section>
+
+  <!-- Concept 5 -->
+  <section id="c5" class="concept">
+    <div class="concept__head">
+      <span class="concept__num">05</span>
+      <h3 class="concept__name">Score Gauge</h3>
+      <span class="concept__tag">&mdash; the in-app gauge as a badge</span>
+    </div>
+    <div class="demos">
+      <div class="demo demo--app">
+        <div class="app-icon"><img src="/logos/05-score-gauge.svg" alt=""></div>
+        <p class="demo__cap">App icon</p>
+      </div>
+      <div class="demo demo--web">
+        <div class="web-mock">
+          <div class="web-mock__logo"><img src="/logos/05-score-gauge.svg" alt=""><strong style="font-family:var(--serif);font-weight:900">FoodFat</strong></div>
+          <div class="web-mock__nav"><span>Method</span><span>Store</span><span>About</span></div>
+        </div>
+        <div class="web-mock__body">"Plain-English verdicts on the packed food you eat &hellip;"</div>
+        <p class="demo__cap">Website header</p>
+      </div>
+      <div class="demo demo--fav">
+        <div class="fav-strip">
+          <div class="fav-tab"><img src="/logos/05-score-gauge.svg" alt=""><span>FoodFat Review</span></div>
+        </div>
+        <div class="fav-url">https://foodfat.app</div>
+        <p class="demo__cap" style="margin-top:auto">Favicon / tab</p>
+      </div>
+      <div class="demo demo--raw"><img src="/logos/05-score-gauge.svg" alt=""><p class="demo__cap">Raw mark</p></div>
+    </div>
+    <div class="concept__notes">
+      <div><h4>The idea</h4><p>The circular health-score gauge from the app, used as a brand badge. Inside the ring sits the FF monogram; a small leaf rides the 1 o'clock position.</p></div>
+      <div><h4>Best for</h4><p>Tech-product brand. Most "this is the scanner app" of the eight &mdash; the gauge is the product's signature visual.</p></div>
+    </div>
+  </section>
+
+  <!-- Concept 6 -->
+  <section id="c6" class="concept">
+    <div class="concept__head">
+      <span class="concept__num">06</span>
+      <h3 class="concept__name">Barcode Sprout</h3>
+      <span class="concept__tag">&mdash; a barcode growing a leaf</span>
+    </div>
+    <div class="demos">
+      <div class="demo demo--app">
+        <div class="app-icon"><img src="/logos/06-barcode-sprout.svg" alt=""></div>
+        <p class="demo__cap">App icon</p>
+      </div>
+      <div class="demo demo--web">
+        <div class="web-mock">
+          <div class="web-mock__logo"><img src="/logos/06-barcode-sprout.svg" alt=""><strong style="font-family:var(--serif);font-weight:900">FoodFat</strong></div>
+          <div class="web-mock__nav"><span>Method</span><span>Store</span><span>About</span></div>
+        </div>
+        <div class="web-mock__body">"Plain-English verdicts on the packed food you eat &hellip;"</div>
+        <p class="demo__cap">Website header</p>
+      </div>
+      <div class="demo demo--fav">
+        <div class="fav-strip">
+          <div class="fav-tab"><img src="/logos/06-barcode-sprout.svg" alt=""><span>FoodFat Review</span></div>
+        </div>
+        <div class="fav-url">https://foodfat.app</div>
+        <p class="demo__cap" style="margin-top:auto">Favicon / tab</p>
+      </div>
+      <div class="demo demo--raw"><img src="/logos/06-barcode-sprout.svg" alt=""><p class="demo__cap">Raw mark</p></div>
+    </div>
+    <div class="concept__notes">
+      <div><h4>The idea</h4><p>The literal idea, drawn well: a barcode with one bar that has sprouted into leaves. Bottom row of numbers grounds it as the real thing.</p></div>
+      <div><h4>Best for</h4><p>Tells the whole product story in one glance &mdash; great for App Store/Play Store screenshots and landing-page hero use.</p></div>
+    </div>
+  </section>
+
+  <!-- Concept 7 -->
+  <section id="c7" class="concept">
+    <div class="concept__head">
+      <span class="concept__num">07</span>
+      <h3 class="concept__name">Verdict Seal</h3>
+      <span class="concept__tag">&mdash; certification-style notarial seal</span>
+    </div>
+    <div class="demos">
+      <div class="demo demo--app">
+        <div class="app-icon" style="background:var(--paper)"><img src="/logos/07-verdict-seal.svg" alt=""></div>
+        <p class="demo__cap">App icon</p>
+      </div>
+      <div class="demo demo--web">
+        <div class="web-mock">
+          <div class="web-mock__logo"><img src="/logos/07-verdict-seal.svg" alt=""><strong style="font-family:var(--serif);font-weight:900">FoodFat</strong></div>
+          <div class="web-mock__nav"><span>Method</span><span>Store</span><span>About</span></div>
+        </div>
+        <div class="web-mock__body">"Plain-English verdicts on the packed food you eat &hellip;"</div>
+        <p class="demo__cap">Website header</p>
+      </div>
+      <div class="demo demo--fav">
+        <div class="fav-strip">
+          <div class="fav-tab"><img src="/logos/07-verdict-seal.svg" alt=""><span>FoodFat Review</span></div>
+        </div>
+        <div class="fav-url">https://foodfat.app</div>
+        <p class="demo__cap" style="margin-top:auto">Favicon / tab</p>
+      </div>
+      <div class="demo demo--raw"><img src="/logos/07-verdict-seal.svg" alt=""><p class="demo__cap">Raw mark</p></div>
+    </div>
+    <div class="concept__notes">
+      <div><h4>The idea</h4><p>A notarial seal that doubles as a verdict stamp: curving "FOODFAT · LABEL REVIEW", five stars, FF center, "EST. 2026". The pack got our seal.</p></div>
+      <div><h4>Best for</h4><p>Brands that want to signal authority and judgment. Reuse the seal itself on product reports as a "FoodFat Approved" mark.</p></div>
+    </div>
+  </section>
+
+  <!-- Concept 8 -->
+  <section id="c8" class="concept">
+    <div class="concept__head">
+      <span class="concept__num">08</span>
+      <h3 class="concept__name">Monogram F</h3>
+      <span class="concept__tag">&mdash; a single serif F with a leaf</span>
+    </div>
+    <div class="demos">
+      <div class="demo demo--app">
+        <div class="app-icon"><img src="/logos/08-monogram-f.svg" alt=""></div>
+        <p class="demo__cap">App icon</p>
+      </div>
+      <div class="demo demo--web">
+        <div class="web-mock">
+          <div class="web-mock__logo"><img src="/logos/08-monogram-f.svg" alt=""><strong style="font-family:var(--serif);font-weight:900">FoodFat</strong></div>
+          <div class="web-mock__nav"><span>Method</span><span>Store</span><span>About</span></div>
+        </div>
+        <div class="web-mock__body">"Plain-English verdicts on the packed food you eat &hellip;"</div>
+        <p class="demo__cap">Website header</p>
+      </div>
+      <div class="demo demo--fav">
+        <div class="fav-strip">
+          <div class="fav-tab"><img src="/logos/08-monogram-f.svg" alt=""><span>FoodFat Review</span></div>
+        </div>
+        <div class="fav-url">https://foodfat.app</div>
+        <p class="demo__cap" style="margin-top:auto">Favicon / tab</p>
+      </div>
+      <div class="demo demo--raw"><img src="/logos/08-monogram-f.svg" alt=""><p class="demo__cap">Raw mark</p></div>
+    </div>
+    <div class="concept__notes">
+      <div><h4>The idea</h4><p>The simplest of the set &mdash; a giant italic serif F on a green squircle, with an amber leaf curving into the crossbar. Maximum legibility, minimum noise.</p></div>
+      <div><h4>Best for</h4><p>If you ever expect the mark to be screen-printed on a tote, tile or shirt. Also the cleanest favicon of the eight.</p></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="picker-cta">
+    <h2>Picked one?</h2>
+    <p>Tell me which number (or numbers &mdash; you can use one for the icon and another for the wordmark), and I'll wire it into the magazine header, the app icon set, and every favicon size.</p>
+    <p><code>1</code> · <code>2</code> · <code>3</code> · <code>4</code> · <code>5</code> · <code>6</code> · <code>7</code> · <code>8</code></p>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>FoodFat · Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E🥦%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ───────────────────────── TOP NAV ───────────────────────── -->
+<nav class="topnav">
+  <a class="topnav__brand" href="/">
+    <span class="topnav__mark">🥦</span>
+    <span>The FoodFat Review</span>
+  </a>
+  <div class="topnav__links">
+    <a href="/">Magazine</a>
+    <a href="/stories/">Stories &amp; Recipes</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/admin/" aria-current="page">Admin</a>
+  </div>
+</nav>
+
+<header class="bar">
+  <div class="bar__brand">
+    <span class="bar__mark">🥦</span>
+    <div>
+      <p class="kicker">FoodFat</p>
+      <h1>Admin Console</h1>
+    </div>
+  </div>
+  <div class="bar__right">
+    <span id="who" class="who"></span>
+    <button id="signout" class="btn btn--ghost" hidden>Sign out</button>
+    <a class="btn btn--ghost" href="/stories/">Stories</a>
+    <a class="btn btn--ghost" href="/">← Magazine</a>
+  </div>
+</header>
+
+<!-- ---------------- AUTH ---------------- -->
+<section id="auth-screen" class="screen">
+  <div class="card auth-card">
+    <p class="kicker">Sign in or create account</p>
+    <h2>Operators only.</h2>
+    <p class="muted">Any of these methods works. After your first sign-in we'll show your UID so you can be promoted to admin (or use the auto-promote button if you're the first user).</p>
+
+    <div class="providers">
+      <button type="button" class="prov prov--google" id="prov-google">
+        <svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.7l6.2 5.2C40.9 35.9 44 30.4 44 24c0-1.3-.1-2.6-.4-3.5z"/></svg>
+        <span>Continue with Google</span>
+      </button>
+      <button type="button" class="prov prov--apple" id="prov-apple">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M16.5 12.5a4.07 4.07 0 0 1 2-3.42 4.18 4.18 0 0 0-3.29-1.78c-1.4-.14-2.74.83-3.46.83-.73 0-1.83-.81-3-.79a4.4 4.4 0 0 0-3.71 2.26C3.4 11.84 4.55 16.4 6 18.91c.72 1.21 1.57 2.57 2.7 2.53 1.09-.04 1.5-.7 2.81-.7 1.32 0 1.69.7 2.84.68 1.18-.02 1.92-1.23 2.64-2.45a10.9 10.9 0 0 0 1.2-2.48 4 4 0 0 1-2.69-3.99zM14.3 5.86A4 4 0 0 0 15.25 3a4.07 4.07 0 0 0-2.62 1.35 3.78 3.78 0 0 0-1 2.74 3.34 3.34 0 0 0 2.67-1.23z"/></svg>
+        <span>Continue with Apple</span>
+      </button>
+      <button type="button" class="prov prov--phone" id="prov-phone">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/></svg>
+        <span>Continue with phone</span>
+      </button>
+    </div>
+
+    <div class="or-divider"><span>or</span></div>
+
+    <div class="auth-tabs" role="tablist">
+      <button type="button" class="auth-tab is-active" data-mode="signin" role="tab">Sign in with email</button>
+      <button type="button" class="auth-tab" data-mode="signup" role="tab">Create email account</button>
+    </div>
+
+    <form id="auth-form" class="auth-form" data-mode="signin">
+      <label id="display-name-field" hidden>
+        <span>Display name <em class="muted small">(optional)</em></span>
+        <input type="text" id="display-name" autocomplete="name" maxlength="60"/>
+      </label>
+      <label>
+        <span>Email</span>
+        <input type="email" id="email" autocomplete="username" required />
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" id="password" autocomplete="current-password" required minlength="6" />
+      </label>
+      <label id="password-confirm-field" hidden>
+        <span>Confirm password</span>
+        <input type="password" id="password-confirm" autocomplete="new-password" minlength="6"/>
+      </label>
+      <button class="btn btn--primary" type="submit" id="auth-submit">Sign in</button>
+      <p id="auth-error" class="error" hidden></p>
+    </form>
+
+    <p class="muted small">Forgot the password? <a href="#" id="reset-link">Send a reset email →</a></p>
+  </div>
+</section>
+
+<!-- ---------------- PHONE MODAL ---------------- -->
+<div id="phone-modal" class="modal" hidden>
+  <div class="modal__card">
+    <header class="modal__head">
+      <p class="kicker">Phone &middot; <span id="phone-step-label">Step 1 / 2</span></p>
+      <button class="modal__close" id="phone-modal-close" aria-label="Close">✕</button>
+    </header>
+    <div class="ad-form">
+      <!-- Step 1: number -->
+      <div id="phone-step-1">
+        <label>
+          <span>Phone number</span>
+          <input type="tel" id="phone-number" placeholder="+91 98765 43210" autocomplete="tel"/>
+        </label>
+        <p class="muted small">Include the country code. We'll text you a one-time code via Firebase Auth.</p>
+        <div id="recaptcha-container" style="margin-top:8px"></div>
+        <footer class="modal__foot">
+          <button type="button" class="btn btn--ghost" id="phone-cancel">Cancel</button>
+          <button type="button" class="btn btn--primary" id="phone-send">Send code</button>
+        </footer>
+      </div>
+      <!-- Step 2: code -->
+      <div id="phone-step-2" hidden>
+        <label>
+          <span>6-digit code</span>
+          <input type="text" id="phone-code" inputmode="numeric" pattern="\d{6}" maxlength="6" placeholder="123456"/>
+        </label>
+        <p class="muted small">Sent to <span id="phone-display"></span>. The code arrives in seconds.</p>
+        <footer class="modal__foot">
+          <button type="button" class="btn btn--ghost" id="phone-back">← Back</button>
+          <button type="button" class="btn btn--primary" id="phone-verify">Verify & sign in</button>
+        </footer>
+      </div>
+      <p id="phone-error" class="error" hidden></p>
+    </div>
+  </div>
+</div>
+
+<!-- ---------------- DENIED ---------------- -->
+<section id="denied-screen" class="screen" hidden>
+  <div class="card denied-card">
+    <p class="kicker">Not authorised</p>
+    <h2>You're signed in, but you aren't an admin.</h2>
+    <p class="muted">Your UID: <code id="denied-uid"></code> <button id="copy-uid" class="btn btn--icon" type="button" style="margin-left:6px">Copy</button></p>
+    <p class="muted">Ask an existing admin to add this UID to the <code>admins/</code> Firestore collection &mdash; or, if no admin exists yet, claim the first slot:</p>
+    <button class="btn btn--primary" id="self-promote">Promote me to admin</button>
+    <p class="muted small" style="margin-top:8px">Only works if the <code>admins/</code> collection is empty (first-run bootstrap). Otherwise an existing admin must grant you access.</p>
+    <button class="btn btn--ghost" id="denied-signout" style="margin-top:14px">Sign out</button>
+  </div>
+</section>
+
+<!-- ---------------- ADMIN ---------------- -->
+<main id="admin-screen" class="screen" hidden>
+
+  <section class="overview">
+    <p class="kicker">Overview &middot; live counts</p>
+    <div class="tiles">
+      <div class="tile"><strong id="count-users">…</strong><span>Users</span></div>
+      <div class="tile"><strong id="count-scans">…</strong><span>Scans</span></div>
+      <div class="tile"><strong id="count-ads">…</strong><span>Live ads</span></div>
+      <div class="tile"><strong id="count-admins">…</strong><span>Admins</span></div>
+    </div>
+  </section>
+
+  <section class="ads">
+    <div class="section-head">
+      <div>
+        <p class="kicker">Content &middot; Promo Ads</p>
+        <h3>Cards on the home screen</h3>
+      </div>
+      <button class="btn btn--primary" id="new-ad">+ New ad</button>
+    </div>
+    <p class="muted small" id="ads-summary"></p>
+    <div id="ads-list" class="ad-list"></div>
+  </section>
+
+  <section class="users">
+    <div class="section-head">
+      <div>
+        <p class="kicker">People</p>
+        <h3>Recent users</h3>
+      </div>
+      <span class="muted small">Showing 200 most recent · toggle admin to grant/revoke.</span>
+    </div>
+    <div id="users-list" class="user-list"></div>
+  </section>
+
+  <section class="seeder">
+    <div class="section-head">
+      <div>
+        <p class="kicker">Demo content</p>
+        <h3>Seed sample data</h3>
+      </div>
+    </div>
+    <p class="muted small">Idempotent — re-runs update by stable ID. Use to populate the home screen before showcasing.</p>
+    <div class="seeder-row">
+      <button class="btn" id="seed-ads">Sample ads</button>
+      <button class="btn btn--danger" id="clear-ads">Clear all ads</button>
+    </div>
+    <p id="seeder-status" class="muted small"></p>
+  </section>
+</main>
+
+<!-- ---------------- AD EDIT MODAL ---------------- -->
+<div id="ad-modal" class="modal" hidden>
+  <div class="modal__card">
+    <header class="modal__head">
+      <p class="kicker"><span id="ad-modal-mode">Edit</span> &middot; Promo ad</p>
+      <button class="modal__close" aria-label="Close" id="ad-modal-close">✕</button>
+    </header>
+    <form id="ad-form" class="ad-form">
+      <input type="hidden" id="ad-id" />
+      <label><span>Title *</span><input type="text" id="ad-title" required maxlength="80"/></label>
+      <label><span>Body *</span><textarea id="ad-body" rows="3" required maxlength="280"></textarea></label>
+      <label><span>Image URL</span><input type="url" id="ad-image" placeholder="https://…"/></label>
+      <div class="two-up">
+        <label><span>CTA label</span><input type="text" id="ad-cta-label" placeholder="Learn more"/></label>
+        <label><span>CTA URL</span><input type="url" id="ad-cta-url" placeholder="https://…"/></label>
+      </div>
+      <div class="two-up">
+        <label><span>Priority</span><input type="number" id="ad-priority" value="0" min="-100" max="100"/></label>
+        <label class="check"><input type="checkbox" id="ad-enabled" checked/><span>Enabled</span></label>
+      </div>
+      <div class="two-up">
+        <label><span>Starts at</span><input type="datetime-local" id="ad-starts-at"/></label>
+        <label><span>Ends at</span><input type="datetime-local" id="ad-ends-at"/></label>
+      </div>
+      <footer class="modal__foot">
+        <button type="button" class="btn btn--ghost" id="ad-modal-cancel">Cancel</button>
+        <button type="submit" class="btn btn--primary">Save</button>
+      </footer>
+    </form>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast" hidden></div>
+
+<div class="signoff-bar">
+  <p class="kicker">A Magazine by</p>
+  <p class="signoff-bar__name">Arju</p>
+  <p class="signoff-bar__role">Editor &middot; Designer &middot; Engineer</p>
+  <p class="signoff-bar__year">© 2026 &middot; connect@arjusingh.com</p>
+</div>
+
+<script type="module" src="admin.js"></script>
+</body>
+</html>

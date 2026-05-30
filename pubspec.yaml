@@ -1,0 +1,47 @@
+name: foodfat
+description: "Scan packed food & drinks and find out how healthy / trustworthy they really are."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # Camera + barcode scanning
+  mobile_scanner: ^7.1.2
+  # Pick / take a photo of the label
+  image_picker: ^1.2.0
+  # HTTP calls (Open Food Facts API, Claude vision API)
+  http: ^1.5.0
+  # Local storage: API key + scan history
+  shared_preferences: ^2.5.3
+  # Nice typography
+  google_fonts: ^6.3.2
+  # Open external links (sources)
+  url_launcher: ^6.3.2
+  # Share the health report from the result screen
+  share_plus: ^11.0.0
+  # Firebase (used for admin panel: auth, users, ads, stats, …)
+  firebase_core: ^4.2.0
+  firebase_auth: ^6.2.0
+  cloud_firestore: ^6.2.0
+  # Federated sign-in providers
+  google_sign_in: ^6.2.2
+  sign_in_with_apple: ^7.0.1
+  # Used by sign_in_with_apple
+  crypto: ^3.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/data/products_seed.json

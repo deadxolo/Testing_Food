@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Stories &amp; Recipes &middot; The FoodFat Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css" />
+<link rel="stylesheet" href="stories.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E🥦%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ───────────────────────── TOP NAV ───────────────────────── -->
+<nav class="topnav">
+  <a class="topnav__brand" href="/">
+    <span class="topnav__mark">🥦</span>
+    <span>The FoodFat Review</span>
+  </a>
+  <div class="topnav__links">
+    <a href="/">Magazine</a>
+    <a href="/stories/" aria-current="page">Stories &amp; Recipes</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/admin/">Admin</a>
+    <a href="#compose" class="topnav__cta">Share yours</a>
+  </div>
+</nav>
+
+<!-- ───────────────────────── MASTHEAD ───────────────────────── -->
+<header class="masthead">
+  <div class="masthead__bar">
+    <span><a href="/">← The FoodFat Review</a></span>
+    <span class="masthead__date">Reader Submissions &middot; Free Forever</span>
+    <span id="who-pill"></span>
+  </div>
+  <h1 class="masthead__title">Stories<span>&amp; Recipes</span></h1>
+  <p class="masthead__deck">From the readers. Real kitchens, real labels, real swaps &mdash; the back-of-the-pack lessons we live by.</p>
+  <nav class="masthead__nav">
+    <a href="#latest">Latest</a>
+    <a href="#featured">Featured</a>
+    <a href="#recipes">Recipes</a>
+    <a href="#stories">Stories</a>
+    <a href="#mine">My Posts</a>
+    <a class="cta" id="open-compose-top" href="#compose">Share yours →</a>
+  </nav>
+</header>
+
+<!-- ───────────────────────── FEATURED ───────────────────────── -->
+<section id="featured" class="feature feature--two-col">
+  <div>
+    <p class="kicker">Editor's Pick</p>
+    <h3 id="featured-title">Featured this issue</h3>
+    <p>The post the editorial bench thinks every reader should see: a healthy swap, a label deep-dive, or a recipe that beats its packaged twin.</p>
+  </div>
+  <aside class="excerpt excerpt--light" id="featured-card">
+    <p class="kicker">Loading…</p>
+    <p style="font-style:italic;color:var(--ink-soft)">Waiting on the Firestore stream…</p>
+  </aside>
+</section>
+
+<!-- ───────────────────────── LATEST FEED ───────────────────────── -->
+<section id="latest" class="feature">
+  <div class="feature__intro">
+    <p class="kicker">Latest &middot; Reader Wall</p>
+    <h3>Fresh off the kitchen counter</h3>
+    <p>Anyone can submit. Be honest about ingredients, link a source when you can, and don't post under someone else's name. Admins may feature or hide posts that violate the magazine's ground rules.</p>
+    <div class="filter-row">
+      <button class="chip is-active" data-filter="all">All</button>
+      <button class="chip" data-filter="story">Stories only</button>
+      <button class="chip" data-filter="recipe">Recipes only</button>
+    </div>
+  </div>
+  <div id="feed" class="story-grid"></div>
+  <p id="feed-empty" class="empty" hidden>No posts yet. Be the first &mdash; tap <em>Share yours</em> at the top.</p>
+</section>
+
+<!-- ───────────────────────── MY POSTS ───────────────────────── -->
+<section id="mine" class="feature feature--mine" hidden>
+  <div class="feature__intro">
+    <p class="kicker">From your kitchen</p>
+    <h3>Your posts</h3>
+    <p>You can edit or unpublish any post you authored. Hidden posts stay in the database; admins can still see them.</p>
+  </div>
+  <div id="mine-list" class="story-grid"></div>
+  <p id="mine-empty" class="empty" hidden>You haven't shared anything yet. Tap <em>Share yours</em> above.</p>
+</section>
+
+<!-- ───────────────────────── COMPOSE ───────────────────────── -->
+<section id="compose" class="feature feature--compose">
+  <div class="feature__intro">
+    <p class="kicker" id="compose-kicker">Share yours</p>
+    <h3 id="compose-title">Tell the readers what worked</h3>
+    <p id="compose-blurb">Sign in to post a story or recipe. Same account as the rest of FoodFat — pick any method.</p>
+  </div>
+
+  <div id="signed-out-cta" class="cta-card">
+    <p>You're not signed in.</p>
+    <a class="btn-link" href="/admin/">Open sign-in →</a>
+    <p class="muted small">After signing in, return here to post.</p>
+  </div>
+
+  <form id="compose-form" class="compose-form" hidden>
+    <input type="hidden" id="story-id"/>
+
+    <div class="type-toggle">
+      <label class="radio">
+        <input type="radio" name="type" value="story" checked>
+        <span>📝 Story</span>
+        <em>A swap you made, a label you decoded, a verdict you disagree with.</em>
+      </label>
+      <label class="radio">
+        <input type="radio" name="type" value="recipe">
+        <span>🥗 Recipe</span>
+        <em>A healthy dish, listed with real ingredients + steps.</em>
+      </label>
+    </div>
+
+    <label>
+      <span>Title *</span>
+      <input type="text" id="story-title" maxlength="100" required placeholder="e.g. Swapping Maggi for poha — what changed"/>
+    </label>
+
+    <label>
+      <span>Body *</span>
+      <textarea id="story-body" rows="6" maxlength="2000" required placeholder="What happened? What did you change? Be specific about brands, ingredients, and how you felt."></textarea>
+    </label>
+
+    <div class="recipe-only" hidden>
+      <label>
+        <span>Ingredients <em class="muted small">(one per line)</em></span>
+        <textarea id="story-ingredients" rows="5" maxlength="1500" placeholder="2 cups rolled oats&#10;1 tbsp jaggery&#10;1 banana, sliced"></textarea>
+      </label>
+      <label>
+        <span>Steps <em class="muted small">(one per line)</em></span>
+        <textarea id="story-steps" rows="5" maxlength="2000" placeholder="Soak the oats overnight in milk.&#10;Top with banana &amp; jaggery.&#10;Eat cold."></textarea>
+      </label>
+    </div>
+
+    <label>
+      <span>Photo URL <em class="muted small">(optional)</em></span>
+      <input type="url" id="story-image" placeholder="https://…"/>
+    </label>
+
+    <label>
+      <span>Tags <em class="muted small">(comma-separated, max 5)</em></span>
+      <input type="text" id="story-tags" placeholder="breakfast, low-sugar, indian"/>
+    </label>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn--ghost" id="cancel-edit" hidden>Cancel edit</button>
+      <p class="muted small" id="compose-status"></p>
+      <button class="btn btn--primary" type="submit" id="compose-submit">Publish</button>
+    </div>
+
+    <p id="compose-error" class="error" hidden></p>
+  </form>
+</section>
+
+<!-- ───────────────────────── FOOTER ───────────────────────── -->
+<footer class="colophon">
+  <div>
+    <p class="kicker">Colophon</p>
+    <p><a href="/">← The FoodFat Review</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/admin/">Admin</a></p>
+  </div>
+  <div class="colophon__mast">
+    <p class="kicker">Section</p>
+    <p>Issue No. 01 &middot; Stories<br/>Community contributions<br/>Moderated by the FoodFat editorial bench</p>
+  </div>
+</footer>
+
+<div class="signoff-bar">
+  <p class="kicker">A Magazine by</p>
+  <p class="signoff-bar__name">Arju</p>
+  <p class="signoff-bar__role">Editor &middot; Designer &middot; Engineer</p>
+  <p class="signoff-bar__year">© 2026 &middot; connect@arjusingh.com</p>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script type="module" src="stories.js"></script>
+</body>
+</html>
